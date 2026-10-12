@@ -33,23 +33,13 @@
     "redirects": [
       {
         "source": "/",
-        "destination": "https://knowyourai.live/ctf",
-        "type": 301
+        "destination": "/ctf",
+        "type": 302
       },
       {
         "regex": "^/(?P<path>(?:challenges|agentic|leaderboard|community|learn|labs|research|evolution|docs|privacy|progress|sitemap\\.xml|robots\\.txt)(?:/.*)?)$",
-        "destination": "https://knowyourai.live/ctf/:path",
-        "type": 301
-      },
-      {
-        "source": "/ctf",
-        "destination": "https://knowyourai.live/ctf",
-        "type": 301
-      },
-      {
-        "source": "/ctf/:path*",
-        "destination": "https://knowyourai.live/ctf/:path",
-        "type": 301
+        "destination": "/ctf/:path",
+        "type": 302
       }
     ]
   }
