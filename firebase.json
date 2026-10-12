@@ -8,6 +8,8 @@
   },
   "hosting": {
     "site": "prompt-injection-ctf-2026",
+    "public": "hosting",
+    "cleanUrls": true,
     "headers": [
       {
         "regex": "^/(?:ctf(?:/.*)?|challenges(?:/.*)?|agentic(?:/.*)?|leaderboard|aisywlc|community(?:/.*)?|learn(?:/.*)?|labs(?:/.*)?|research|evolution|docs|privacy|progress)?$",
@@ -35,7 +37,7 @@
         "type": 301
       },
       {
-        "regex": "^/(?P<path>(?:challenges|agentic|leaderboard|aisywlc|community|learn|labs|research|evolution|docs|privacy|progress|sitemap\\.xml|robots\\.txt)(?:/.*)?)$",
+        "regex": "^/(?P<path>(?:challenges|agentic|leaderboard|community|learn|labs|research|evolution|docs|privacy|progress|sitemap\\.xml|robots\\.txt)(?:/.*)?)$",
         "destination": "https://knowyourai.live/ctf/:path",
         "type": 301
       },
