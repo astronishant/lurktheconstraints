@@ -122,14 +122,14 @@ export default function HomePage() {
     { label: "OWASP risk categories", value: `${OWASP_LLM_TOP_10.length} + ${AGENTIC_THREATS.length}`, icon: Shield },
     { label: "To start practice", value: "No signup", icon: Zap },
   ];
-  const shareUrl = "https://knowyourai.live/ctf/challenges";
+  const shareUrl = "https://lurktheconstraints.web.app/ctf/challenges";
   const shareCaption = `Test the boundaries of language models and autonomous agents. Choose LLM CTF or Agentic CTF and explore ${totalMissions} AI security missions: ${shareUrl}`;
   const encodedShareCaption = encodeURIComponent(shareCaption);
 
   async function shareCtf() {
     if (navigator.share) {
       await navigator.share({
-        title: "Prompt Injection CTF",
+        title: "Lurk the Constraints",
         text: shareCaption,
         url: shareUrl,
       }).then(() => trackEvent("share")).catch(() => {});
@@ -410,13 +410,13 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-800">
         <div className="max-w-3xl mx-auto text-center">
           <div className="h-16 w-16 rounded-full bg-gradient-to-br from-emerald-500/30 to-blue-500/30 border-2 border-slate-600 flex items-center justify-center text-xl font-bold mx-auto mb-5">
-            PP
+            LC
           </div>
-          <h2 className="text-2xl font-bold text-white mb-4">Built by Pradyoth Prashanth</h2>
+          <h2 className="text-2xl font-bold text-white mb-4">About this project</h2>
           <p className="text-slate-400 leading-relaxed mb-6">
-            AI Security Researcher with experience in adversarial ML and LLM red teaming. This platform
-            was built to make AI security concepts tangible and testable — because understanding prompt
-            injection in theory is very different from actually crafting an attack that works.
+            Lurk the Constraints is an open-source AI security playground, forked from Prompt Injection
+            CTF. It exists to make AI security concepts tangible and testable — because understanding
+            prompt injection in theory is very different from actually crafting an attack that works.
           </p>
           <p className="text-slate-500 text-sm">
             The evaluation logic, challenge constraints, and educational content reflect real attack

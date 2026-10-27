@@ -26,11 +26,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description,
     alternates: { canonical: `/challenges/${challenge.id}` },
     openGraph: {
-      title: `${title} — Prompt Injection CTF`,
+      title: `${title} — Lurk the Constraints`,
       description,
     },
     twitter: {
-      title: `${title} — Prompt Injection CTF`,
+      title: `${title} — Lurk the Constraints`,
       description,
     },
   };

@@ -13,9 +13,9 @@ const escape = (value) => {
   return `"${safe.replaceAll('"', '""')}"`;
 };
 const rows = [["handle", "email", "college", "tier", "points", "completedCount", "lastSolveTime"]];
-const scores = await db.collection("cohort_leaderboard").where("cohortId", "==", "aisywlc2026").get();
+const scores = await db.collection("cohort_leaderboard").where("cohortId", "==", "lurk").get();
 for (const score of scores.docs) {
-  const uid = score.id.slice("aisywlc2026_".length);
+  const uid = score.id.slice("lurk_".length);
   const player = await db.collection("players").doc(uid).get();
   if (!player.exists) continue;
   const data = score.data();

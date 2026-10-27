@@ -1,6 +1,6 @@
 # Contributing
 
-Prompt Injection CTF grows through new attack scenarios, stronger defensive controls, regression tests, and better learning material.
+Lurk the Constraints grows through new attack scenarios, stronger defensive controls, regression tests, and better learning material.
 
 ## Before you start
 
@@ -12,8 +12,8 @@ Prompt Injection CTF grows through new attack scenarios, stronger defensive cont
 ## Local setup
 
 ```bash
-git clone https://github.com/ppradyoth/prompt-injection-ctf.git
-cd prompt-injection-ctf
+git clone https://github.com/astronishant/lurktheconstraints.git
+cd lurktheconstraints
 npm ci
 npm run dev
 ```

@@ -14,7 +14,7 @@ describe("verified Google ID token", () => {
     mocks.verifyIdToken.mockReset();
     mocks.getPlayer.mockReset();
     mocks.verifyIdToken.mockResolvedValue({ uid: "trusted-uid", email: "private@example.com", email_verified: true, firebase: { sign_in_provider: "google.com" } });
-    mocks.getPlayer.mockResolvedValue({ data: () => ({ handle: "Student", cohorts: ["aisywlc2026"] }) });
+    mocks.getPlayer.mockResolvedValue({ data: () => ({ handle: "Student", cohorts: ["lurk"] }) });
   });
 
   it("takes the uid from Admin token verification", async () => {

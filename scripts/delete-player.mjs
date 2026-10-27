@@ -8,7 +8,7 @@ if (!keyPath || !uid) throw new Error("Usage: node scripts/delete-player.mjs ser
 initializeApp({ credential: cert(JSON.parse(readFileSync(keyPath, "utf8"))) });
 const db = getFirestore();
 const playerRef = db.collection("players").doc(uid);
-const refs = [playerRef, db.collection("leaderboard").doc(uid), db.collection("cohort_leaderboard").doc(`aisywlc2026_${uid}`), db.collection("evaluate_limits").doc(uid)];
+const refs = [playerRef, db.collection("leaderboard").doc(uid), db.collection("cohort_leaderboard").doc(`lurk_${uid}`), db.collection("evaluate_limits").doc(uid)];
 for (const [collection, field] of [["cohort_handles", "uid"], ["weekly_solves", "userId"], ["weekly_leaderboard", "userId"]]) {
   const rows = await db.collection(collection).where(field, "==", uid).get();
   refs.push(...rows.docs.map((row) => row.ref));

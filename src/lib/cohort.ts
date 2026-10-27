@@ -1,19 +1,19 @@
 import { createHash } from "node:crypto";
-import { AISYWLC_MISSION_IDS } from "@/lib/challenges";
-export { AISYWLC_MISSION_IDS } from "@/lib/challenges";
+import { COHORT_MISSION_IDS } from "@/lib/challenges";
+export { COHORT_MISSION_IDS } from "@/lib/challenges";
 
-export const AISYWLC = {
-  id: "aisywlc2026",
-  name: "AISYWLC 2026",
-  startsAt: Date.parse(process.env.AISYWLC_STARTS_AT ?? "2026-10-02T04:12:08Z"),
-  endsAt: Date.parse(process.env.AISYWLC_ENDS_AT ?? "2026-10-03T08:30:00Z"),
+export const COHORT = {
+  id: "lurk",
+  name: "Lurk the Constraints",
+  startsAt: Date.parse(process.env.COHORT_STARTS_AT ?? "2000-01-01T00:00:00Z"),
+  endsAt: Date.parse(process.env.COHORT_ENDS_AT ?? "2099-12-31T23:59:59Z"),
 };
 
-const FIRST_THREE = AISYWLC_MISSION_IDS.slice(0, 3);
+const FIRST_THREE = COHORT_MISSION_IDS.slice(0, 3);
 
 export function getTier(solvedChallenges: string[]): "Full" | "Core" | "Starter" | null {
-  const solved = new Set(solvedChallenges.filter((id) => AISYWLC_MISSION_IDS.some((missionId) => missionId === id)));
-  if (solved.size === AISYWLC_MISSION_IDS.length) return "Full";
+  const solved = new Set(solvedChallenges.filter((id) => COHORT_MISSION_IDS.some((missionId) => missionId === id)));
+  if (solved.size === COHORT_MISSION_IDS.length) return "Full";
   if (solved.size >= 8) return "Core";
   if (FIRST_THREE.every((id) => solved.has(id))) return "Starter";
   return null;
@@ -23,7 +23,7 @@ export function defaultCohortHandle(uid: string) {
   return `Player-${createHash("sha256").update(uid).digest("hex").slice(0, 13)}`;
 }
 
-const IMPERSONATION = /(?:admin|administrator|moderator|official|organizer|support|staff|aisywlc|firebase|google|fuck|shit|bitch|nigger)/i;
+const IMPERSONATION = /(?:admin|administrator|moderator|official|organizer|support|staff|firebase|google|fuck|shit|bitch|nigger)/i;
 
 export function googleFirstName(name: unknown) {
   if (typeof name !== "string") return null;
@@ -43,5 +43,5 @@ export function cohortHandleCandidates(name: unknown, uid: string) {
 }
 
 export function inCohortWindow(now: number) {
-  return now >= AISYWLC.startsAt && now <= AISYWLC.endsAt;
+  return now >= COHORT.startsAt && now <= COHORT.endsAt;
 }

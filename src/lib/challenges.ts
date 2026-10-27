@@ -1237,7 +1237,7 @@ async function loadIntoBuild(a: Artifact, ctx: RegistryContext) {
 // Core challenges always available
 export const CHALLENGES = ALL_CHALLENGES;
 
-export const AISYWLC_MISSION_IDS = [
+export const COHORT_MISSION_IDS = [
   "level-1-basic-injection",
   "level-2-roleplay-jailbreak",
   "level-3-intent-drift",

@@ -1,6 +1,6 @@
 import { getAuth } from "firebase-admin/auth";
 import { getDb, getFirebaseAdmin } from "@/lib/firebase-admin";
-import { AISYWLC } from "@/lib/cohort";
+import { COHORT } from "@/lib/cohort";
 
 export class InvalidTokenError extends Error {}
 
@@ -22,7 +22,7 @@ export async function getAuthedPlayer(req: Request) {
       name: typeof decoded.name === "string" ? decoded.name : null,
       handle: typeof data?.handle === "string" ? data.handle : null,
       college: typeof data?.college === "string" ? data.college : "",
-      joined: Array.isArray(data?.cohorts) && data.cohorts.includes(AISYWLC.id),
+      joined: Array.isArray(data?.cohorts) && data.cohorts.includes(COHORT.id),
     };
   } catch {
     throw new InvalidTokenError("Invalid token");

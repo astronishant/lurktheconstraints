@@ -3,9 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   basePath: "/ctf",
   async redirects() {
-    return ["/", "/challenges/:path*", "/agentic/:path*", "/leaderboard", "/aisywlc", "/community/:path*", "/learn/:path*", "/labs/:path*", "/research", "/evolution", "/docs", "/privacy", "/progress", "/sitemap.xml", "/robots.txt"].map((source) => ({
+    return ["/", "/challenges/:path*", "/agentic/:path*", "/leaderboard", "/account", "/community/:path*", "/learn/:path*", "/labs/:path*", "/research", "/evolution", "/docs", "/privacy", "/progress", "/sitemap.xml", "/robots.txt"].map((source) => ({
       source,
-      destination: `https://knowyourai.live/ctf${source === "/" ? "" : source}`,
+      destination: `/ctf${source === "/" ? "" : source}`,
       basePath: false,
       permanent: true,
     }));

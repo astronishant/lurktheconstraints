@@ -23,14 +23,14 @@ describe("cohort leaderboard API", () => {
   });
 
   it("does not return private email even if a data source includes one", async () => {
-    const response = await GET(new NextRequest("http://localhost/api/leaderboard?cohort=aisywlc2026"));
+    const response = await GET(new NextRequest("http://localhost/api/leaderboard?cohort=lurk"));
     expect(response.status).toBe(200);
     expect(await response.text()).not.toContain("private@example.com");
   });
 
   it("shows a new member's zero progress without exposing their email", async () => {
     mocks.getCohortEntries.mockResolvedValue({ leaderboard: [], own: null });
-    const response = await GET(new NextRequest("http://localhost/api/leaderboard?cohort=aisywlc2026"));
+    const response = await GET(new NextRequest("http://localhost/api/leaderboard?cohort=lurk"));
     const body = await response.json();
     expect(body.own).toMatchObject({ rank: null, completedCount: 0, points: 0, tier: null });
     expect(JSON.stringify(body)).not.toContain("private@example.com");

@@ -8,20 +8,18 @@ import LeaderboardTable from "@/components/LeaderboardTable";
 import { LeaderboardEntry } from "@/lib/firestore/leaderboard";
 import { useCohortPlayer } from "@/hooks/useCohortPlayer";
 import { getClientAuth } from "@/lib/firebase-client";
-import { AISYWLC_MISSION_IDS } from "@/lib/challenges";
+import { COHORT_MISSION_IDS } from "@/lib/challenges";
 import { AGENTIC_MISSIONS } from "@/lib/agentic/catalog";
 import { formatTimeTaken } from "@/lib/utils";
 
-const COHORT_END = Date.parse(process.env.NEXT_PUBLIC_AISYWLC_ENDS_AT ?? "2026-10-03T08:30:00Z");
-
 function tierProgress(solvedChallenges: string[]) {
   const solved = new Set(solvedChallenges);
-  const done = AISYWLC_MISSION_IDS.filter((id) => solved.has(id)).length;
-  const starterLeft = AISYWLC_MISSION_IDS.slice(0, 3).filter((id) => !solved.has(id)).length;
+  const done = COHORT_MISSION_IDS.filter((id) => solved.has(id)).length;
+  const starterLeft = COHORT_MISSION_IDS.slice(0, 3).filter((id) => !solved.has(id)).length;
   return [
     { name: "Starter · level 3", earned: starterLeft === 0 },
     { name: "Core · level 8", earned: done >= 8 },
-    { name: "Full · level 16", earned: done >= AISYWLC_MISSION_IDS.length },
+    { name: "Full · level 16", earned: done >= COHORT_MISSION_IDS.length },
   ];
 }
 
@@ -31,7 +29,7 @@ export default function LeaderboardPage({ searchParams }: { searchParams: Promis
   const board = use(searchParams).board;
   const [entries, setEntries] = useState<LeaderboardEntry[]>([]);
   const [loading, setLoading] = useState(true);
-  const [period, setPeriod] = useState<"all" | "week" | "cohort" | "agentic" | "overall" | "legacy">(board === "aisywlc" ? "cohort" : board === "agentic" ? "agentic" : board === "overall" ? "overall" : board === "llm" ? "all" : "legacy");
+  const [period, setPeriod] = useState<"all" | "week" | "cohort" | "agentic" | "overall" | "legacy">(board === "cohort" ? "cohort" : board === "agentic" ? "agentic" : board === "overall" ? "overall" : board === "llm" ? "all" : "legacy");
   const [cohortEntries, setCohortEntries] = useState<CohortEntry[]>([]);
   const [own, setOwn] = useState<CohortEntry | null>(null);
   const cohortPlayer = useCohortPlayer();
@@ -43,12 +41,11 @@ export default function LeaderboardPage({ searchParams }: { searchParams: Promis
     ? cohortEntries.filter((entry) => entry.rank !== null && entry.rank <= 3).map((entry) => ({ ...entry, username: entry.handle }))
     : entries.filter((entry) => entry.rank <= 3);
   const shownCount = period === "cohort" ? cohortEntries.length : entries.length;
-  const [contestOver] = useState(() => Date.now() > COHORT_END);
 
   useEffect(() => {
     const load = async () => {
       const token = period === "cohort" && cohortUid ? await getClientAuth().currentUser?.getIdToken() : null;
-      return fetch(period === "agentic" || period === "overall" || period === "legacy" ? `/ctf/api/leaderboard?track=${period}` : period === "cohort" ? "/ctf/api/leaderboard?cohort=aisywlc2026" : `/ctf/api/leaderboard?period=${period}`,
+      return fetch(period === "agentic" || period === "overall" || period === "legacy" ? `/ctf/api/leaderboard?track=${period}` : period === "cohort" ? "/ctf/api/leaderboard?cohort=lurk" : `/ctf/api/leaderboard?period=${period}`,
         { headers: token ? { Authorization: `Bearer ${token}` } : {} });
     };
     load()
@@ -86,7 +83,7 @@ export default function LeaderboardPage({ searchParams }: { searchParams: Promis
           {(["legacy", "agentic", "overall", "all", "week", "cohort"] as const).map((option) => (
             <button key={option} onClick={() => selectPeriod(option)} aria-pressed={period === option} className={period === option ? "is-active" : ""}>
               {period === option && <motion.span className="ranking-period-active" layoutId="ranking-period" transition={{ duration: reduceMotion ? 0 : 0.25 }} />}
-              <span className="relative">{option === "legacy" ? "LLM CTF · Historical" : option === "overall" ? "Overall" : option === "agentic" ? "Agentic CTF" : option === "week" ? "This week" : option === "cohort" ? (contestOver ? "AISYWLC · Final" : "AISYWLC 2026") : "Verified LLM"}</span>
+              <span className="relative">{option === "legacy" ? "LLM CTF · Historical" : option === "overall" ? "Overall" : option === "agentic" ? "Agentic CTF" : option === "week" ? "This week" : option === "cohort" ? "Cohort" : "Verified LLM"}</span>
             </button>
           ))}
         </div><span className="ranking-status"><Terminal size={13} /> {loading ? "Fetching standings" : error ? "Connection unavailable" : `${shownCount} ranked players shown`}</span></div>
@@ -104,7 +101,7 @@ export default function LeaderboardPage({ searchParams }: { searchParams: Promis
         )}
         {period === "cohort" && (
           <div className="mb-8 text-center text-sm text-slate-300">
-            <p>{contestOver ? "The contest is over. These are the final standings." : "Contest mission completions."} Fixed points per mission; one score per mission in the contest window.</p>
+            <p>Signed-in mission completions. Fixed points per mission; one score per mission.</p>
             <div className="mt-3 flex flex-wrap justify-center gap-2">
               {tierProgress(own?.solvedChallenges ?? []).map(({ name, earned }) => (
                 <span key={name} className={`rounded-full border px-3 py-1 text-xs ${own && earned ? "border-emerald-400 bg-emerald-400/20 text-emerald-200" : "border-emerald-500/40 text-emerald-300"}`}>

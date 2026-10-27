@@ -4,7 +4,7 @@
 
 Do not open a public issue for a security vulnerability.
 
-Use [GitHub private vulnerability reporting](https://github.com/ppradyoth/prompt-injection-ctf/security/advisories/new) and include:
+Use [GitHub private vulnerability reporting](https://github.com/astronishant/lurktheconstraints/security/advisories/new) and include:
 
 - Affected route, component, or commit
 - Reproduction steps

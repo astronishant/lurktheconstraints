@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAuthedPlayer, InvalidTokenError } from "@/lib/authed-player";
-import { AISYWLC, cohortHandleCandidates } from "@/lib/cohort";
+import { COHORT, cohortHandleCandidates } from "@/lib/cohort";
 import { getDb } from "@/lib/firebase-admin";
 
 export async function GET(req: NextRequest) {
@@ -20,10 +20,10 @@ export async function POST(req: NextRequest) {
     const candidates = cohortHandleCandidates(player.name, player.uid);
     const settled = candidates.length === 1 ? candidates : candidates.slice(0, -1);
     if (player.joined && player.handle && settled.includes(player.handle)) return NextResponse.json({ handle: player.handle, joined: true });
-    if (!player.joined && Date.now() > AISYWLC.endsAt) return NextResponse.json({ error: "Registration closed" }, { status: 403 });
+    if (!player.joined && Date.now() > COHORT.endsAt) return NextResponse.json({ error: "Registration closed" }, { status: 403 });
     const db = getDb();
     const playerRef = db.collection("players").doc(player.uid);
-    const cohortRef = db.collection("cohort_leaderboard").doc(`${AISYWLC.id}_${player.uid}`);
+    const cohortRef = db.collection("cohort_leaderboard").doc(`${COHORT.id}_${player.uid}`);
     const globalRef = db.collection("leaderboard").doc(player.uid);
     const handle = await db.runTransaction(async (transaction) => {
       const existing = await transaction.get(playerRef);
@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
         email: player.email,
         handle,
         handleKey,
-        cohorts: [...new Set([...(Array.isArray(cohorts) ? cohorts : []), AISYWLC.id])],
+        cohorts: [...new Set([...(Array.isArray(cohorts) ? cohorts : []), COHORT.id])],
         joinedAt: existing.get("joinedAt") ?? now,
         createdAt: existing.get("createdAt") ?? now,
       }, { merge: true });

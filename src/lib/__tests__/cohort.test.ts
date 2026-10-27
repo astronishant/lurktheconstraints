@@ -13,7 +13,7 @@ vi.mock("@/lib/authed-player", () => ({
       email: "student@example.edu",
       name: state.name,
       handle: typeof data?.handle === "string" ? data.handle : null,
-      joined: Array.isArray(data?.cohorts) && data.cohorts.includes("aisywlc2026"),
+      joined: Array.isArray(data?.cohorts) && data.cohorts.includes("lurk"),
     };
   },
   InvalidTokenError: class extends Error {},
@@ -39,7 +39,7 @@ vi.mock("@/lib/firebase-admin", () => ({
 
 import { POST } from "@/app/api/cohort/join/route";
 
-describe("AISYWLC profile", () => {
+describe("Cohort profile", () => {
     it("generates a stable public alias without exposing the uid", () => {
     const alias = defaultCohortHandle("verified-uid");
     expect(alias).toMatch(/^Player-[a-f0-9]{13}$/);
@@ -52,11 +52,11 @@ describe("AISYWLC profile", () => {
     expect(googleFirstName("Asha Kumar")).toBe("Asha");
     expect(googleFirstName("  Zoë  Smith ")).toBe("Zoë");
     expect(googleFirstName("=cmd|x Smith")).toBe("cmdx");
-    for (const name of ["Admin User", "AISYWLC Staff", "", "!!!", null, undefined]) expect(googleFirstName(name)).toBeNull();
+    for (const name of ["Admin User", "Staff Member", "", "!!!", null, undefined]) expect(googleFirstName(name)).toBeNull();
   });
 });
 
-describe("AISYWLC automatic registration", () => {
+describe("Cohort automatic registration", () => {
   const request = (body?: unknown) => new NextRequest("http://localhost/api/cohort/join", {
     method: "POST",
     headers: { Authorization: "Bearer verified-token" },
@@ -84,7 +84,7 @@ describe("AISYWLC automatic registration", () => {
     const { handle } = await first.json();
     expect(handle).toBe("Asha");
     const saved = state.docs.get("players/verified-uid");
-    expect(saved).toMatchObject({ email: "student@example.edu", handle, cohorts: ["aisywlc2026"] });
+    expect(saved).toMatchObject({ email: "student@example.edu", handle, cohorts: ["lurk"] });
     expect(state.docs.get("cohort_handles/asha")).toEqual({ uid: "verified-uid" });
     expect((await POST(request())).status).toBe(200);
     expect(state.docs.get("players/verified-uid")).toEqual(saved);
@@ -99,23 +99,23 @@ describe("AISYWLC automatic registration", () => {
   });
 
   it("migrates an old generated or custom handle to the first name and updates public scores", async () => {
-    state.docs.set("players/verified-uid", { handle: defaultCohortHandle("verified-uid"), handleKey: defaultCohortHandle("verified-uid").toLowerCase(), cohorts: ["aisywlc2026"] });
-    state.docs.set("cohort_leaderboard/aisywlc2026_verified-uid", { handle: defaultCohortHandle("verified-uid"), points: 100 });
+    state.docs.set("players/verified-uid", { handle: defaultCohortHandle("verified-uid"), handleKey: defaultCohortHandle("verified-uid").toLowerCase(), cohorts: ["lurk"] });
+    state.docs.set("cohort_leaderboard/lurk_verified-uid", { handle: defaultCohortHandle("verified-uid"), points: 100 });
     expect((await POST(request())).status).toBe(200);
-    const score = state.docs.get("cohort_leaderboard/aisywlc2026_verified-uid");
+    const score = state.docs.get("cohort_leaderboard/lurk_verified-uid");
     expect(score).toMatchObject({ handle: "Asha", points: 100 });
     expect(score).not.toHaveProperty("email");
   });
 
-  it("closes new registration after the contest while retaining existing members", async () => {
-    vi.setSystemTime(new Date("2026-10-03T08:30:01Z"));
+  it("closes new registration after the cohort window while retaining existing members", async () => {
+    vi.setSystemTime(new Date("2100-01-01T00:00:00Z"));
     expect((await POST(request())).status).toBe(403);
-    state.docs.set("players/verified-uid", { handle: "Asha", cohorts: ["aisywlc2026"] });
+    state.docs.set("players/verified-uid", { handle: "Asha", cohorts: ["lurk"] });
     expect((await POST(request())).status).toBe(200);
   });
 });
 
-describe("AISYWLC tiers", () => {
+describe("Cohort tiers", () => {
   const ids = CHALLENGES.map((challenge) => challenge.id);
   it("uses exact solved mission IDs", () => {
     expect(getTier([])).toBeNull();

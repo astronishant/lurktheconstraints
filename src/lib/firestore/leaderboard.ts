@@ -7,7 +7,7 @@ import type { Query, QueryDocumentSnapshot } from "firebase-admin/firestore";
 import { isFirebaseConfigured, getDb } from "@/lib/firebase-admin";
 import { MOCK_LEADERBOARD, TOTAL_CHALLENGES } from "@/lib/scoring";
 import { getChallengeById } from "@/lib/challenges";
-import { AISYWLC, AISYWLC_MISSION_IDS, inCohortWindow } from "@/lib/cohort";
+import { COHORT, COHORT_MISSION_IDS, inCohortWindow } from "@/lib/cohort";
 
 export interface LeaderboardEntry {
   rank: number;
@@ -171,12 +171,12 @@ export async function getTopEntries(limit?: number, legacy = false): Promise<Lea
 export async function getCohortEntries(uid?: string) {
   if (!isFirebaseConfigured()) return { leaderboard: [], own: null };
   const snap = await getDb().collection("cohort_leaderboard")
-    .where("cohortId", "==", AISYWLC.id)
+    .where("cohortId", "==", COHORT.id)
     .get();
   const ranked = rankEntries(snap.docs.map((doc) => {
     const data = doc.data();
     return {
-      userId: doc.id.slice(AISYWLC.id.length + 1),
+      userId: doc.id.slice(COHORT.id.length + 1),
       handle: data.handle as string,
       avatar: data.avatar as string,
       college: (data.college as string | undefined) ?? "",
@@ -241,8 +241,8 @@ export async function recordSolve(
   const firstSolve = (existing?: { firstSolveTime?: unknown }) =>
     !existing ? { firstSolveTime: solvedAt } : finite(existing.firstSolveTime) ? { firstSolveTime: existing.firstSolveTime } : {};
   return db.runTransaction(async (transaction) => {
-    const cohortRef = cohortUid && AISYWLC_MISSION_IDS.some((id) => id === challengeId) && inCohortWindow(solvedAt)
-      ? db.collection("cohort_leaderboard").doc(`${AISYWLC.id}_${cohortUid}`) : null;
+    const cohortRef = cohortUid && COHORT_MISSION_IDS.some((id) => id === challengeId) && inCohortWindow(solvedAt)
+      ? db.collection("cohort_leaderboard").doc(`${COHORT.id}_${cohortUid}`) : null;
     const playerRef = cohortRef ? db.collection("players").doc(cohortUid!) : null;
     const [snap, weeklySnap, weeklyScoreSnap, playerSnap, cohortSnap] = await transaction.getAll(
       ref, weeklyRef, weeklyScoreRef, ...(playerRef && cohortRef ? [playerRef, cohortRef] : []));
@@ -282,11 +282,11 @@ export async function recordSolve(
       });
     }
     const player = playerSnap?.data();
-    if (cohortRef && player?.cohorts?.includes(AISYWLC.id) && typeof player.handle === "string") {
+    if (cohortRef && player?.cohorts?.includes(COHORT.id) && typeof player.handle === "string") {
       const current = cohortSnap?.data();
       if (!(current?.solvedChallenges ?? []).includes(challengeId)) {
         transaction.set(cohortRef, {
-          cohortId: AISYWLC.id,
+          cohortId: COHORT.id,
           userId: cohortUid,
           handle: player.handle,
           avatar: player.handle[0].toUpperCase(),

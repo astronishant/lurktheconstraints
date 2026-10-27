@@ -7,12 +7,12 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "site": "prompt-injection-ctf-2026",
+    "site": "lurktheconstraints",
     "public": "hosting",
     "cleanUrls": true,
     "headers": [
       {
-        "regex": "^/(?:ctf(?:/.*)?|challenges(?:/.*)?|agentic(?:/.*)?|leaderboard|aisywlc|community(?:/.*)?|learn(?:/.*)?|labs(?:/.*)?|research|evolution|docs|privacy|progress)?$",
+        "regex": "^/(?:ctf(?:/.*)?|challenges(?:/.*)?|agentic(?:/.*)?|leaderboard|account|community(?:/.*)?|learn(?:/.*)?|labs(?:/.*)?|research|evolution|docs|privacy|progress)?$",
         "headers": [
           {
             "key": "Cache-Control",
@@ -25,7 +25,7 @@
       {
         "source": "**",
         "run": {
-          "serviceId": "prompt-injection-ctf",
+          "serviceId": "lurktheconstraints",
           "region": "us-central1"
         }
       }

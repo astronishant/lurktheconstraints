@@ -21,11 +21,11 @@ import { recordSolve } from "@/lib/firestore/leaderboard";
 
 describe("cohort recordSolve", () => {
   const challenge = CHALLENGES[0];
-  const scorePath = "cohort_leaderboard/aisywlc2026_trusted-uid";
+  const scorePath = "cohort_leaderboard/lurk_trusted-uid";
 
   beforeEach(() => {
     state.docs.clear();
-    state.docs.set("players/trusted-uid", { handle: "Student", cohorts: ["aisywlc2026"] });
+    state.docs.set("players/trusted-uid", { handle: "Student", cohorts: ["lurk"] });
     vi.useFakeTimers();
   });
   afterEach(() => vi.useRealTimers());
@@ -51,9 +51,9 @@ describe("cohort recordSolve", () => {
   });
 
   it("does not score before start or after end", async () => {
-    vi.setSystemTime(new Date("2026-10-02T04:12:07Z"));
+    vi.setSystemTime(new Date("1999-12-31T23:59:00Z"));
     await recordSolve("trusted-uid", "Student", "S", challenge.id, 100, "trusted-uid");
-    vi.setSystemTime(new Date("2026-10-03T08:30:01Z"));
+    vi.setSystemTime(new Date("2100-01-01T00:00:00Z"));
     await recordSolve("trusted-uid", "Student", "S", challenge.id, 100, "trusted-uid");
     expect(state.docs.has(scorePath)).toBe(false);
   });

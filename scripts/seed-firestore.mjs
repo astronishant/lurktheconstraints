@@ -8,7 +8,7 @@ import { initializeApp } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 
 // Use gcloud ADC
-initializeApp({ projectId: "prompt-injection-ctf-2026" });
+initializeApp({ projectId: "lurktheconstraints" });
 const db = getFirestore();
 
 // ── Leaderboard seed data ─────────────────────────────────────────────────────
@@ -131,8 +131,8 @@ async function seed() {
   console.log(`✅ Community: ${COMMUNITY.length} attacks written`);
 
   console.log("\n🎉 Done! Check your live site:");
-  console.log("   https://prompt-injection-ctf-2026.web.app/leaderboard");
-  console.log("   https://prompt-injection-ctf-2026.web.app/community");
+  console.log("   https://lurktheconstraints.web.app/leaderboard");
+  console.log("   https://lurktheconstraints.web.app/community");
 }
 
 seed().catch((err) => { console.error(err); process.exit(1); });

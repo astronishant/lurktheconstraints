@@ -1,21 +1,21 @@
-# Prompt Injection CTF
+# Lurk the Constraints
 
 Hands-on AI security training. Explore 16 LLM security missions and 30 agentic security missions, study why an attack worked, then switch to defender mode and inspect the control that stops it.
 
-[![Live Demo](https://img.shields.io/badge/Play_the_CTF-Free-ef4444?style=for-the-badge)](https://prompt-injection-ctf-2026.web.app)
-[![CI](https://img.shields.io/github/actions/workflow/status/ppradyoth/prompt-injection-ctf/ci.yml?branch=main&style=for-the-badge&label=CI)](https://github.com/ppradyoth/prompt-injection-ctf/actions/workflows/ci.yml)
+[![Live Demo](https://img.shields.io/badge/Play_the_CTF-Free-ef4444?style=for-the-badge)](https://lurktheconstraints.web.app)
+[![CI](https://img.shields.io/github/actions/workflow/status/astronishant/lurktheconstraints/ci.yml?branch=main&style=for-the-badge&label=CI)](https://github.com/astronishant/lurktheconstraints/actions/workflows/ci.yml)
 [![OWASP Coverage](https://img.shields.io/badge/OWASP_LLM_Top_10-10%2F10-10b981?style=for-the-badge)](docs/CHALLENGES.md#owasp-llm-top-10-2025-coverage)
 [![License: MIT](https://img.shields.io/badge/License-MIT-3b82f6?style=for-the-badge)](LICENSE)
 
-[![Prompt Injection CTF gameplay banner](public/social-preview.png)](https://prompt-injection-ctf-2026.web.app)
+[![Lurk the Constraints gameplay banner](public/social-preview.png)](https://lurktheconstraints.web.app)
 
-**[Play now](https://prompt-injection-ctf-2026.web.app)** · **[Agentic Security Lab](https://prompt-injection-ctf-2026.web.app/agentic)** · **[Browse all 16 challenges](docs/CHALLENGES.md)** · **[Propose a challenge](https://github.com/ppradyoth/prompt-injection-ctf/issues/new?template=challenge.yml)**
+**[Play now](https://lurktheconstraints.web.app)** · **[Agentic Security Lab](https://lurktheconstraints.web.app/agentic)** · **[Browse all 16 challenges](docs/CHALLENGES.md)** · **[Propose a challenge](https://github.com/astronishant/lurktheconstraints/issues/new?template=challenge.yml)**
 
 No signup or API key for the default practice mode. Live-model grading is optional and uses your own provider key.
 
-**Used in independent research:** [Can GPT Still Be Fooled?](https://github.com/shmulc8/prompt-injection-model-evolution) froze 11 of this CTF's system prompts into a regression benchmark: 18 attacks, 3 attempts each, across 9 GPT snapshots. Attack success fell from 54/54 on GPT-3.5 Turbo to 6/54 on GPT-5.6 Sol, and never reached zero.
+A rebranded fork of [ppradyoth/prompt-injection-ctf](https://github.com/ppradyoth/prompt-injection-ctf), used in independent research: [Can GPT Still Be Fooled?](https://github.com/shmulc8/prompt-injection-model-evolution) froze 11 of the original CTF's system prompts into a regression benchmark: 18 attacks, 3 attempts each, across 9 GPT snapshots. Attack success fell from 54/54 on GPT-3.5 Turbo to 6/54 on GPT-5.6 Sol, and never reached zero.
 
-If this helps you understand how AI systems fail, [star the repo](https://github.com/ppradyoth/prompt-injection-ctf) so more people find it.
+If this helps you understand how AI systems fail, [star the repo](https://github.com/astronishant/lurktheconstraints) so more people find it.
 
 ## What you attack
 
@@ -46,13 +46,13 @@ Open `/agentic` for three missions in each of the [OWASP Agentic Top 10 categori
 - Defense replay applies controls to the same tool requests. A separate legitimate task must still complete; memory attacks also require a safe clean follow-up in live mode.
 - Code missions interpret at most 16 virtual JSON operations. They never execute host code, shells, real filesystem operations, or network requests.
 - Each run permits eight tool calls, four model turns per stage, and a shared 45-second live deadline. Ranked runs have a per-user active lease and ten-run-per-minute limit.
-- Foundation, Advanced, and Expert missions award 150, 300, and 500 points once per scenario version. Practice progress stays on the device; ranked progress is server-owned. Agentic and LLM boards remain separate, with an Overall board combining matching server user IDs. AISYWLC retains its original 16-mission cohort.
+- Foundation, Advanced, and Expert missions award 150, 300, and 500 points once per scenario version. Practice progress stays on the device; ranked progress is server-owned. Agentic and LLM boards remain separate, with an Overall board combining matching server user IDs.
 
 The acceptance suite covers every authored winning tool fixture, defense replay, legitimate controls, resets, stage isolation, schema forgery, manifest integrity, signed-message replay, virtual interpreter boundaries, and defender deny-everything failures. Real-provider difficulty and natural-language solve rates require separate live calibration; mocked-provider checks do not establish those rates.
 
 ## Roadmap
 
-Planned tracks, tracking how AI systems are actually being deployed. Ideas are not commitments; [propose or vote on one](https://github.com/ppradyoth/prompt-injection-ctf/issues/new?template=challenge.yml).
+Planned tracks, tracking how AI systems are actually being deployed. Ideas are not commitments; [propose or vote on one](https://github.com/astronishant/lurktheconstraints/issues/new?template=challenge.yml).
 
 ### Coding agents
 
@@ -95,8 +95,8 @@ Planned tracks, tracking how AI systems are actually being deployed. Ideas are n
 Requires Node.js 22 or newer.
 
 ```bash
-git clone https://github.com/ppradyoth/prompt-injection-ctf.git
-cd prompt-injection-ctf
+git clone https://github.com/astronishant/lurktheconstraints.git
+cd lurktheconstraints
 npm ci
 npm run dev
 ```
@@ -134,9 +134,9 @@ Set the Firebase variables from `.env.local.example` to enable the persistent le
 
 ## Share the first mission
 
-The fastest introduction is [Level 1: Basic Prompt Injection](https://prompt-injection-ctf-2026.web.app/challenges/level-1-basic-injection): read MathBot's rule, submit a prompt that pulls it off topic, inspect the simulated response, then open Defender view. A player can download a result card or send a direct challenge link after solving.
+The fastest introduction is [Level 1: Basic Prompt Injection](https://lurktheconstraints.web.app/ctf/challenges/level-1-basic-injection): read MathBot's rule, submit a prompt that pulls it off topic, inspect the simulated response, then open Defender view. A player can download a result card or send a direct challenge link after solving.
 
-Share caption: **Can you make a math tutor answer a question that has nothing to do with math? Try this free prompt injection CTF mission:** https://prompt-injection-ctf-2026.web.app/challenges/level-1-basic-injection
+Share caption: **Can you make a math tutor answer a question that has nothing to do with math? Try this free prompt injection CTF mission:** https://lurktheconstraints.web.app/ctf/challenges/level-1-basic-injection
 
 For launch measurement, `/api/stats/global?funnel=7d` returns seven days of aggregate landing, return, mission-open, referral, attempt, solve, and share counts. It stores no prompts or player identifiers. Counts are directional: repeat attempts and automated traffic can inflate them. The weekly board starts with newly recorded solves; historical aggregate scores cannot be reconstructed into weekly results.
 
@@ -173,12 +173,12 @@ CI runs the same checks on every pull request.
 
 New challenges, defensive controls, tests, and learning resources are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
-- [Propose a challenge](https://github.com/ppradyoth/prompt-injection-ctf/issues/new?template=challenge.yml)
-- [Report a bug](https://github.com/ppradyoth/prompt-injection-ctf/issues/new?template=bug.yml)
-- [Suggest an improvement](https://github.com/ppradyoth/prompt-injection-ctf/issues/new?template=feature.yml)
+- [Propose a challenge](https://github.com/astronishant/lurktheconstraints/issues/new?template=challenge.yml)
+- [Report a bug](https://github.com/astronishant/lurktheconstraints/issues/new?template=bug.yml)
+- [Suggest an improvement](https://github.com/astronishant/lurktheconstraints/issues/new?template=feature.yml)
 
 Report security vulnerabilities privately through the process in [SECURITY.md](SECURITY.md).
 
 ## License
 
-[MIT](LICENSE). Copyright (c) 2026 Pradyoth Prashanth.
+[MIT](LICENSE). Copyright (c) 2026 Pradyoth Prashanth (original author). Fork maintained by Nishant Yadawad.

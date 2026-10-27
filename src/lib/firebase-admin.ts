@@ -5,7 +5,7 @@
  *
  * 1. Firebase App Hosting / Cloud Run / GCP — uses Application Default
  *    Credentials (ADC) automatically. No env vars needed beyond PROJECT_ID.
- *    Just set: FIREBASE_PROJECT_ID=prompt-injection-ctf-2026
+ *    Just set: FIREBASE_PROJECT_ID=lurktheconstraints
  *
  * 2. Local dev with service account key — set all three:
  *    FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY

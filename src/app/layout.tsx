@@ -14,13 +14,13 @@ const inter = Inter({
 
 const DESCRIPTION = `Learn AI security through a complete foundational path, ${CHALLENGES.length + AGENTIC_MISSIONS.length} missions, and ${GUIDED_LABS.length} guided defense labs. Inspect execution evidence. Anonymous practice is free and unranked.`;
 
-const BASE_URL = "https://knowyourai.live/ctf";
+const BASE_URL = "https://lurktheconstraints.web.app/ctf";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "KnowYourAI CTF — Learn, Attack, Defend",
-    template: "%s | KnowYourAI CTF",
+    default: "Lurk the Constraints — Learn, Attack, Defend",
+    template: "%s | Lurk the Constraints",
   },
   description:
     DESCRIPTION,
@@ -50,14 +50,14 @@ export const metadata: Metadata = {
     "LLM red team",
     "generative AI security",
   ],
-  authors: [{ name: "Pradyoth Prashanth" }],
-  creator: "Pradyoth Prashanth",
+  authors: [{ name: "Nishant Yadawad" }],
+  creator: "Nishant Yadawad",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: BASE_URL,
-    siteName: "KnowYourAI CTF",
-    title: "KnowYourAI CTF — Learn, Attack, Defend",
+    siteName: "Lurk the Constraints",
+    title: "Lurk the Constraints — Learn, Attack, Defend",
     description:
       DESCRIPTION,
     images: [
@@ -65,17 +65,16 @@ export const metadata: Metadata = {
         url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "KnowYourAI CTF — Learn, Attack, Defend",
+        alt: "Lurk the Constraints — Learn, Attack, Defend",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "KnowYourAI CTF — Learn, Attack, Defend",
+    title: "Lurk the Constraints — Learn, Attack, Defend",
     description:
       DESCRIPTION,
     images: [`${BASE_URL}/og-image.png`],
-    creator: "@pradyoth",
   },
   robots: {
     index: true,
@@ -93,14 +92,14 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "Prompt Injection CTF",
+  name: "Lurk the Constraints",
   url: BASE_URL,
   description:
     DESCRIPTION,
   applicationCategory: "SecurityApplication",
   operatingSystem: "Web",
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-  author: { "@type": "Person", name: "Pradyoth Prashanth" },
+  author: { "@type": "Person", name: "Nishant Yadawad" },
   keywords: "prompt injection, AI security, CTF, jailbreak, red teaming, LLM security",
 };
 

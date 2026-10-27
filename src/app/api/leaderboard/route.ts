@@ -9,7 +9,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getTopEntries, getWeeklyEntries, getWeekStart, getCohortEntries, rankEntries, type LeaderboardEntry } from "@/lib/firestore/leaderboard";
 import { getAuthedPlayer, InvalidTokenError } from "@/lib/authed-player";
-import { AISYWLC, getTier } from "@/lib/cohort";
+import { COHORT, getTier } from "@/lib/cohort";
 import { getDb, isFirebaseConfigured } from "@/lib/firebase-admin";
 
 function publicAgenticEntry(doc: { id: string; data: () => Record<string, unknown> }): Omit<LeaderboardEntry, "rank"> {
@@ -49,11 +49,11 @@ export async function GET(req: NextRequest) {
       }
       return NextResponse.json({ leaderboard: rankEntries([...combined.values()]), track, period: "all" });
     }
-    if (req.nextUrl.searchParams.get("cohort") === AISYWLC.id) {
+    if (req.nextUrl.searchParams.get("cohort") === COHORT.id) {
       const player = await getAuthedPlayer(req);
       const result = await getCohortEntries(player?.uid);
       return NextResponse.json({
-        cohort: AISYWLC.name,
+        cohort: COHORT.name,
         leaderboard: result.leaderboard.map(publicCohortEntry),
         own: result.own ? publicCohortEntry(result.own) : player?.joined ? {
           rank: null,

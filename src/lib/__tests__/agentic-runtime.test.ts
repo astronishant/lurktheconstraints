@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 vi.mock("server-only", () => ({}));
 import { executeAction, LabBudgetError, LabInputError, parseProgram, runLab, violation, type TraceEvent, type World } from "@/lib/agentic/runtime";
 import { AGENTIC_MISSIONS, LAB_BRIEFINGS } from "@/lib/agentic/catalog";
-import { AISYWLC_MISSION_IDS } from "@/lib/challenges";
+import { COHORT_MISSION_IDS } from "@/lib/challenges";
 import { getTier } from "@/lib/cohort";
 
 import { GUIDED_LABS } from "@/lib/guided-labs";
@@ -19,8 +19,8 @@ describe("agentic mission boundaries", () => {
     expect(AGENTIC_MISSIONS.filter((mission) => mission.status === "available").map((mission) => mission.id).sort()).toEqual(Object.keys(LAB_BRIEFINGS).sort());
   });
   it("freezes cohort completion independently of added mission identifiers", () => {
-    expect(AISYWLC_MISSION_IDS).toHaveLength(16);
-    expect(getTier([...AISYWLC_MISSION_IDS, "asi01-a"])).toBe("Full");
+    expect(COHORT_MISSION_IDS).toHaveLength(16);
+    expect(getTier([...COHORT_MISSION_IDS, "asi01-a"])).toBe("Full");
     expect(getTier(["asi01-a", "asi02-a", "asi06-a"])).toBeNull();
   });
   it.each(["asi01-a", "asi02-a", "asi06-a"])("preserves the legitimate control for %s", async (id) => {

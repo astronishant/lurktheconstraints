@@ -46,8 +46,8 @@ const PERSONA_NAMES: Record<string, string> = {
   "level-7-agent-tool-abuse": "AgentX",
 };
 
-const COHORT_START = Date.parse(process.env.NEXT_PUBLIC_AISYWLC_STARTS_AT ?? "2026-10-02T04:12:08Z");
-const COHORT_END = Date.parse(process.env.NEXT_PUBLIC_AISYWLC_ENDS_AT ?? "2026-10-03T08:30:00Z");
+const COHORT_START = Date.parse(process.env.NEXT_PUBLIC_COHORT_STARTS_AT ?? "2000-01-01T00:00:00Z");
+const COHORT_END = Date.parse(process.env.NEXT_PUBLIC_COHORT_ENDS_AT ?? "2099-12-31T23:59:59Z");
 
 export default function ChallengeGameScreen({ challenge, challengerName }: Props) {
   const [prompt, setPrompt] = useState("");
@@ -374,9 +374,9 @@ export default function ChallengeGameScreen({ challenge, challengerName }: Props
         <div className="border-b border-amber-400/30 bg-amber-400/10 px-4 py-3">
           <div className="mx-auto max-w-7xl text-center text-sm text-amber-200">
             {cohortPlayer.user
-              ? "Your AISYWLC registration did not finish, so solves won't count toward the contest. "
-              : "You're not signed in, so solves won't count toward the AISYWLC contest. "}
-            <Link href="/aisywlc" className="font-semibold underline">{cohortPlayer.user ? "Fix registration" : "Sign in with Google"}</Link>
+              ? "Your sign-in registration did not finish, so solves won't count toward the leaderboard. "
+              : "You're not signed in, so solves won't count toward the ranked leaderboard. "}
+            <Link href="/account" className="font-semibold underline">{cohortPlayer.user ? "Fix registration" : "Sign in with Google"}</Link>
           </div>
         </div>
       )}
@@ -595,14 +595,14 @@ export default function ChallengeGameScreen({ challenge, challengerName }: Props
                   <div className="flex items-center gap-2 text-xs text-slate-400 bg-slate-900/40 rounded-lg px-3 py-2">
                     <Trophy className="h-3.5 w-3.5 text-yellow-400" />
                     {cohortCounted
-                      ? <>Counted for AISYWLC as <span className="text-white font-semibold">{cohortHandle}</span></>
+                      ? <>Counted on the leaderboard as <span className="text-white font-semibold">{cohortHandle}</span></>
                       : <>Verified score recorded as <span className="text-white font-semibold">{cohortHandle ?? player?.username}</span></>}
                   </div>
                 )}
                 {solved && contestOpen && !cohortCounted && (
                   <div className="flex items-center gap-2 text-xs text-amber-300 bg-amber-400/10 border border-amber-400/30 rounded-lg px-3 py-2">
                     <AlertTriangle className="h-3.5 w-3.5" />
-                    This solve did NOT count for AISYWLC. Sign in with Google on the <Link href="/aisywlc" className="underline">AISYWLC page</Link>, then solve it again.
+                    This solve did NOT count toward the ranked leaderboard. Sign in with Google on the <Link href="/account" className="underline">account page</Link>, then solve it again.
                   </div>
                 )}
 
@@ -642,7 +642,7 @@ export default function ChallengeGameScreen({ challenge, challengerName }: Props
                   <button
                     onClick={() => {
                       const name = player?.username ?? "someone";
-                      const url = `https://knowyourai.live/ctf/challenges/${challenge.id}?ref=${encodeURIComponent(name)}`;
+                      const url = `https://lurktheconstraints.web.app/ctf/challenges/${challenge.id}?ref=${encodeURIComponent(name)}`;
                       navigator.clipboard.writeText(url);
                       setChallengeCopied(true);
                       setTimeout(() => setChallengeCopied(false), 2000);

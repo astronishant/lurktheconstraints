@@ -18,7 +18,7 @@ export function AgenticFailureNotice({ detail }: { detail?: string }) {
     const timer = window.setTimeout(() => router.replace("/"), 10_000);
     return () => window.clearTimeout(timer);
   }, [router]);
-  return <div ref={notice} className="platform-page"><section className="platform-shell" role="alert"><header className="platform-header"><p className="eyebrow">Agentic CTF support</p><h1>Something went wrong.</h1><p>Please email <a href="mailto:pradyoth.jpg@gmail.com" className="text-emerald-300 underline">pradyoth.jpg@gmail.com</a> with the mission link and the error you saw.</p></header>{detail && <p className="agentic-error">{detail}</p>}<p className="mt-6 text-slate-400">Returning to the home page in 10 seconds.</p><Link href="/" className="lab-button lab-button-primary mt-6">Go to the home page</Link></section></div>;
+  return <div ref={notice} className="platform-page"><section className="platform-shell" role="alert"><header className="platform-header"><p className="eyebrow">Agentic CTF support</p><h1>Something went wrong.</h1><p>Please email <a href="mailto:nishantyadawad007@gmail.com" className="text-emerald-300 underline">nishantyadawad007@gmail.com</a> with the mission link and the error you saw.</p></header>{detail && <p className="agentic-error">{detail}</p>}<p className="mt-6 text-slate-400">Returning to the home page in 10 seconds.</p><Link href="/" className="lab-button lab-button-primary mt-6">Go to the home page</Link></section></div>;
 }
 
 export class AgenticErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {

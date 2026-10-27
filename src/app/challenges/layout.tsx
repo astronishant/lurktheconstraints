@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description:
     "Browse 46 LLM and agentic missions plus three guided defense labs. Search by system, skill, and difficulty. Anonymous practice is unranked.",
   openGraph: {
-    title: "AI Security Challenges — Prompt Injection CTF",
+    title: "AI Security Challenges — Lurk the Constraints",
     description:
       "46 existing missions and three guided defense labs with explicit execution modes and inspectable evidence.",
   },

@@ -10,4 +10,4 @@ Security research shared here must stay within authorized systems. Do not post r
 
 Project maintainers may edit, remove, or reject contributions and participation that violate this standard. Serious or repeated violations may result in a temporary or permanent ban.
 
-Report conduct concerns privately to the project maintainer through [GitHub](https://github.com/ppradyoth). Reports will be reviewed in confidence.
+Report conduct concerns privately to the project maintainer through [GitHub](https://github.com/astronishant). Reports will be reviewed in confidence.

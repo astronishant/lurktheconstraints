@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { getChallengeById } from "@/lib/challenges";
 
 export const runtime = "edge";
-export const alt = "Prompt Injection CTF Challenge";
+export const alt = "Lurk the Constraints Challenge";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -30,7 +30,7 @@ export default async function OGImage({ params }: { params: Promise<{ id: string
   if (!challenge) {
     return new ImageResponse(
       <div style={{ display: "flex", width: "100%", height: "100%", background: "#0F172A", color: "white", alignItems: "center", justifyContent: "center", fontSize: 48 }}>
-        Prompt Injection CTF
+        Lurk the Constraints
       </div>,
       { ...size }
     );
@@ -94,7 +94,7 @@ export default async function OGImage({ params }: { params: Promise<{ id: string
 
       {/* Bottom */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "auto" }}>
-        <div style={{ color: "#475569", fontSize: 18 }}>knowyourai.live/ctf</div>
+        <div style={{ color: "#475569", fontSize: 18 }}>lurktheconstraints.web.app</div>
         <div style={{ color: "#475569", fontSize: 18 }}>Free · No sign-up · 16 challenges</div>
       </div>
     </div>,

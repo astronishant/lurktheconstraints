@@ -40,7 +40,7 @@ export default function ChallengesPage({ searchParams }: { searchParams: Promise
         <div className="ctf-track-footer"><span>30 missions · OWASP Agentic 2026</span><strong>Explore Agentic CTF <ArrowUpRight size={18} /></strong></div>
       </Link>
     </div>
-    <div className="mt-8 flex flex-wrap gap-3"><Link href="/leaderboard" className="lab-button lab-button-primary">Leaderboard <ArrowUpRight size={16} /></Link><Link href="/community" className="lab-button lab-button-secondary">Community</Link><Link href="/aisywlc" className="lab-button lab-button-secondary">AISYWLC 2026</Link><Link href="/challenges?view=labs" className="lab-button lab-button-secondary">All labs & guided defenses</Link></div>
+    <div className="mt-8 flex flex-wrap gap-3"><Link href="/leaderboard" className="lab-button lab-button-primary">Leaderboard <ArrowUpRight size={16} /></Link><Link href="/community" className="lab-button lab-button-secondary">Community</Link><Link href="/account" className="lab-button lab-button-secondary">Sign in</Link><Link href="/challenges?view=labs" className="lab-button lab-button-secondary">All labs & guided defenses</Link></div>
   </div></div>;
 }
 
@@ -59,7 +59,7 @@ function LlmMissions() {
   const nextChallenge = CHALLENGES.find((challenge) => !isSolved(challenge.id)) ?? CHALLENGES[0];
   const weekly = CHALLENGES.find((challenge) => challenge.id === weeklyId)!;
   const diff = DIFFICULTY_CONFIG[weekly.difficulty];
-  const shareUrl = "https://knowyourai.live/ctf/challenges?track=llm";
+  const shareUrl = "https://lurktheconstraints.web.app/ctf/challenges?track=llm";
   const shareCaption = ["Can you break the rule in one of these 16 AI security challenges? Pick a mission and compare results.", "", shareUrl, "#PromptInjectionCTF #AISecurity"].join("\n");
   const encodedCaption = encodeURIComponent(shareCaption);
 
@@ -87,7 +87,7 @@ function LlmMissions() {
                   `${buildGrid(solvedIds)} ${solvedCount}/${CHALLENGES.length}`,
                   "Device-local learning progress. Execution provenance may be unknown.",
                   "",
-                  "Explore the labs: https://knowyourai.live/ctf/challenges",
+                  "Explore the labs: https://lurktheconstraints.web.app/ctf/challenges",
                   "#PromptInjectionCTF #AISecurity",
                 ].join("\n");
                 navigator.clipboard.writeText(text);

@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description:
     "A complete six-lesson AI security foundation path with knowledge checks, guided defenses, original examples, and source-linked references.",
   openGraph: {
-    title: "Learn AI Security — Prompt Injection CTF",
+    title: "Learn AI Security — Lurk the Constraints",
     description: "Learn trust boundaries, sensitive context, indirect injection, resource scope, tool authorization, and reproducible evidence.",
   },
 };
