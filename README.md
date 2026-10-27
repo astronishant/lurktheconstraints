@@ -2,14 +2,14 @@
 
 Hands-on AI security training. Explore 16 LLM security missions and 30 agentic security missions, study why an attack worked, then switch to defender mode and inspect the control that stops it.
 
-[![Live Demo](https://img.shields.io/badge/Play_the_CTF-Free-ef4444?style=for-the-badge)](https://lurktheconstraints.web.app)
+[![Live Demo](https://img.shields.io/badge/Play_the_CTF-Free-ef4444?style=for-the-badge)](https://lurktheconstraints.vercel.app)
 [![CI](https://img.shields.io/github/actions/workflow/status/astronishant/lurktheconstraints/ci.yml?branch=main&style=for-the-badge&label=CI)](https://github.com/astronishant/lurktheconstraints/actions/workflows/ci.yml)
 [![OWASP Coverage](https://img.shields.io/badge/OWASP_LLM_Top_10-10%2F10-10b981?style=for-the-badge)](docs/CHALLENGES.md#owasp-llm-top-10-2025-coverage)
 [![License: MIT](https://img.shields.io/badge/License-MIT-3b82f6?style=for-the-badge)](LICENSE)
 
-[![Lurk the Constraints gameplay banner](public/social-preview.png)](https://lurktheconstraints.web.app)
+[![Lurk the Constraints gameplay banner](public/social-preview.png)](https://lurktheconstraints.vercel.app)
 
-**[Play now](https://lurktheconstraints.web.app)** · **[Agentic Security Lab](https://lurktheconstraints.web.app/agentic)** · **[Browse all 16 challenges](docs/CHALLENGES.md)** · **[Propose a challenge](https://github.com/astronishant/lurktheconstraints/issues/new?template=challenge.yml)**
+**[Play now](https://lurktheconstraints.vercel.app)** · **[Agentic Security Lab](https://lurktheconstraints.vercel.app/agentic)** · **[Browse all 16 challenges](docs/CHALLENGES.md)** · **[Propose a challenge](https://github.com/astronishant/lurktheconstraints/issues/new?template=challenge.yml)**
 
 No signup or API key for the default practice mode. Live-model grading is optional and uses your own provider key.
 
@@ -103,7 +103,18 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000). The default evaluator runs locally with deterministic attack classification and simulated responses.
 
-### Optional live-model evaluation
+### Deploy (free)
+
+The site runs on [Vercel](https://vercel.com)'s free **Hobby** tier, with Firebase's free **Spark** plan supplying Firestore and Google sign-in. No credit card and no Blaze plan are needed.
+
+1. Push to GitHub, then import the repo at [vercel.com/new](https://vercel.com/new). Vercel detects Next.js automatically — no build settings to change.
+2. In [Firebase Console](https://console.firebase.google.com), create the project `lurktheconstraints`, then create a **Firestore** database and enable **Authentication → Sign-in method → Google**.
+3. Register a **Web** app in Firebase and copy every variable from `.env.local.example` into **Vercel → Settings → Environment Variables**, then redeploy.
+4. Add your Vercel domain to **Authentication → Settings → Authorized domains** so Google sign-in is allowed there.
+
+The app lives under the `/ctf` base path; the root path redirects to it.
+
+### Optional live LLM evaluation
 
 Copy `.env.local.example` to `.env.local`, then add one provider key:
 
@@ -134,9 +145,9 @@ Set the Firebase variables from `.env.local.example` to enable the persistent le
 
 ## Share the first mission
 
-The fastest introduction is [Level 1: Basic Prompt Injection](https://lurktheconstraints.web.app/ctf/challenges/level-1-basic-injection): read MathBot's rule, submit a prompt that pulls it off topic, inspect the simulated response, then open Defender view. A player can download a result card or send a direct challenge link after solving.
+The fastest introduction is [Level 1: Basic Prompt Injection](https://lurktheconstraints.vercel.app/ctf/challenges/level-1-basic-injection): read MathBot's rule, submit a prompt that pulls it off topic, inspect the simulated response, then open Defender view. A player can download a result card or send a direct challenge link after solving.
 
-Share caption: **Can you make a math tutor answer a question that has nothing to do with math? Try this free prompt injection CTF mission:** https://lurktheconstraints.web.app/ctf/challenges/level-1-basic-injection
+Share caption: **Can you make a math tutor answer a question that has nothing to do with math? Try this free prompt injection CTF mission:** https://lurktheconstraints.vercel.app/ctf/challenges/level-1-basic-injection
 
 For launch measurement, `/api/stats/global?funnel=7d` returns seven days of aggregate landing, return, mission-open, referral, attempt, solve, and share counts. It stores no prompts or player identifiers. Counts are directional: repeat attempts and automated traffic can inflate them. The weekly board starts with newly recorded solves; historical aggregate scores cannot be reconstructed into weekly results.
 

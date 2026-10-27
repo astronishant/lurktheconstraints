@@ -131,8 +131,8 @@ async function seed() {
   console.log(`✅ Community: ${COMMUNITY.length} attacks written`);
 
   console.log("\n🎉 Done! Check your live site:");
-  console.log("   https://lurktheconstraints.web.app/leaderboard");
-  console.log("   https://lurktheconstraints.web.app/community");
+  console.log("   https://lurktheconstraints.vercel.app/leaderboard");
+  console.log("   https://lurktheconstraints.vercel.app/community");
 }
 
 seed().catch((err) => { console.error(err); process.exit(1); });

@@ -14,7 +14,7 @@ const inter = Inter({
 
 const DESCRIPTION = `Learn AI security through a complete foundational path, ${CHALLENGES.length + AGENTIC_MISSIONS.length} missions, and ${GUIDED_LABS.length} guided defense labs. Inspect execution evidence. Anonymous practice is free and unranked.`;
 
-const BASE_URL = "https://lurktheconstraints.web.app/ctf";
+const BASE_URL = "https://lurktheconstraints.vercel.app/ctf";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

@@ -642,7 +642,7 @@ export default function ChallengeGameScreen({ challenge, challengerName }: Props
                   <button
                     onClick={() => {
                       const name = player?.username ?? "someone";
-                      const url = `https://lurktheconstraints.web.app/ctf/challenges/${challenge.id}?ref=${encodeURIComponent(name)}`;
+                      const url = `https://lurktheconstraints.vercel.app/ctf/challenges/${challenge.id}?ref=${encodeURIComponent(name)}`;
                       navigator.clipboard.writeText(url);
                       setChallengeCopied(true);
                       setTimeout(() => setChallengeCopied(false), 2000);

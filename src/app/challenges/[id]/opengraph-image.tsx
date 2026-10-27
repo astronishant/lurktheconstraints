@@ -94,7 +94,7 @@ export default async function OGImage({ params }: { params: Promise<{ id: string
 
       {/* Bottom */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "auto" }}>
-        <div style={{ color: "#475569", fontSize: 18 }}>lurktheconstraints.web.app</div>
+        <div style={{ color: "#475569", fontSize: 18 }}>lurktheconstraints.vercel.app</div>
         <div style={{ color: "#475569", fontSize: 18 }}>Free · No sign-up · 16 challenges</div>
       </div>
     </div>,

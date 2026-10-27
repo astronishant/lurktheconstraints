@@ -122,7 +122,7 @@ export default function HomePage() {
     { label: "OWASP risk categories", value: `${OWASP_LLM_TOP_10.length} + ${AGENTIC_THREATS.length}`, icon: Shield },
     { label: "To start practice", value: "No signup", icon: Zap },
   ];
-  const shareUrl = "https://lurktheconstraints.web.app/ctf/challenges";
+  const shareUrl = "https://lurktheconstraints.vercel.app/ctf/challenges";
   const shareCaption = `Test the boundaries of language models and autonomous agents. Choose LLM CTF or Agentic CTF and explore ${totalMissions} AI security missions: ${shareUrl}`;
   const encodedShareCaption = encodeURIComponent(shareCaption);
 

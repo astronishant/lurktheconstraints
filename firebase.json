@@ -1,46 +1,6 @@
 {
-  "apphosting": {
-    "source": "."
-  },
   "firestore": {
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
-  },
-  "hosting": {
-    "site": "lurktheconstraints",
-    "public": "hosting",
-    "cleanUrls": true,
-    "headers": [
-      {
-        "regex": "^/(?:ctf(?:/.*)?|challenges(?:/.*)?|agentic(?:/.*)?|leaderboard|account|community(?:/.*)?|learn(?:/.*)?|labs(?:/.*)?|research|evolution|docs|privacy|progress)?$",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "no-cache, no-store"
-          }
-        ]
-      }
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "run": {
-          "serviceId": "lurktheconstraints",
-          "region": "us-central1"
-        }
-      }
-    ],
-    "redirects": [
-      {
-        "source": "/",
-        "destination": "/ctf",
-        "type": 302
-      },
-      {
-        "regex": "^/(?P<path>(?:challenges|agentic|leaderboard|community|learn|labs|research|evolution|docs|privacy|progress|sitemap\\.xml|robots\\.txt)(?:/.*)?)$",
-        "destination": "/ctf/:path",
-        "type": 302
-      }
-    ]
   }
 }

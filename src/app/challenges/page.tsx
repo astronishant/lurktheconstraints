@@ -59,7 +59,7 @@ function LlmMissions() {
   const nextChallenge = CHALLENGES.find((challenge) => !isSolved(challenge.id)) ?? CHALLENGES[0];
   const weekly = CHALLENGES.find((challenge) => challenge.id === weeklyId)!;
   const diff = DIFFICULTY_CONFIG[weekly.difficulty];
-  const shareUrl = "https://lurktheconstraints.web.app/ctf/challenges?track=llm";
+  const shareUrl = "https://lurktheconstraints.vercel.app/ctf/challenges?track=llm";
   const shareCaption = ["Can you break the rule in one of these 16 AI security challenges? Pick a mission and compare results.", "", shareUrl, "#PromptInjectionCTF #AISecurity"].join("\n");
   const encodedCaption = encodeURIComponent(shareCaption);
 
@@ -87,7 +87,7 @@ function LlmMissions() {
                   `${buildGrid(solvedIds)} ${solvedCount}/${CHALLENGES.length}`,
                   "Device-local learning progress. Execution provenance may be unknown.",
                   "",
-                  "Explore the labs: https://lurktheconstraints.web.app/ctf/challenges",
+                  "Explore the labs: https://lurktheconstraints.vercel.app/ctf/challenges",
                   "#PromptInjectionCTF #AISecurity",
                 ].join("\n");
                 navigator.clipboard.writeText(text);
