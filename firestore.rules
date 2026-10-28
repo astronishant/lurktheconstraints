@@ -1,0 +1,70 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Community attacks — public read, server-write-only (via Admin SDK)
+    match /community_attacks/{docId} {
+      allow read: if true;
+      allow write: if false; // all writes go through the API route (Admin SDK)
+    }
+
+    // Leaderboard — public read, server-write-only
+    match /leaderboard/{userId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /weekly_solves/{solveId} {
+      allow read, write: if false;
+    }
+
+    match /weekly_leaderboard/{userId} {
+      allow read, write: if false;
+    }
+
+    match /funnel_daily/{day} {
+      allow read, write: if false;
+    }
+
+    match /players/{uid} {
+      allow read, write: if false;
+    }
+
+    match /cohort_handles/{handle} {
+      allow read, write: if false;
+    }
+
+    match /evaluate_limits/{uid} {
+      allow read, write: if false;
+    }
+
+    match /verified_llm_leaderboard/{uid} {
+      allow read, write: if false;
+    }
+    match /verified_llm_weekly_leaderboard/{uid} {
+      allow read, write: if false;
+    }
+    match /verified_llm_weekly_solves/{id} {
+      allow read, write: if false;
+    }
+    match /llm_sessions/{id} {
+      allow read, write: if false;
+    }
+    match /llm_run_limits/{id} {
+      allow read, write: if false;
+    }
+
+    match /agentic_limits/{uid} {
+      allow read, write: if false;
+    }
+
+    match /agentic_leaderboard/{uid} {
+      allow read, write: if false;
+    }
+
+    match /cohort_leaderboard/{entry} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}

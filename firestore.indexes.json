@@ -1,0 +1,54 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "cohort_leaderboard",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "cohortId", "order": "ASCENDING" },
+        { "fieldPath": "points", "order": "DESCENDING" },
+        { "fieldPath": "lastSolveTime", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "weekly_leaderboard",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "weekStart", "order": "ASCENDING" },
+        { "fieldPath": "points", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "community_attacks",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "attackType", "order": "ASCENDING" },
+        { "fieldPath": "votes", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "community_attacks",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "challengeId", "order": "ASCENDING" },
+        { "fieldPath": "votes", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "community_attacks",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "attackType", "order": "ASCENDING" },
+        { "fieldPath": "submittedAt", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "verified_llm_weekly_leaderboard",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "weekStart", "order": "ASCENDING" },
+        { "fieldPath": "points", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
